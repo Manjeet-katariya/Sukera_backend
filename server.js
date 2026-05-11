@@ -89,6 +89,8 @@ app.use('/api/social', socialRoutes);
 
 const socialIconsRoutes = require('./routes/socialIcons');
 app.use('/api/social-icons', socialIconsRoutes);
+app.use('/api/social-icon', socialIconsRoutes);
+app.use('/api/socialicons', socialIconsRoutes);
 
 const founderRoutes = require('./routes/founder');
 app.use('/api/founder', founderRoutes);

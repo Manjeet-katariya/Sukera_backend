@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 // SMTP Configuration for Gmail
 const transporter = nodemailer.createTransport({
@@ -33,8 +34,8 @@ const sendContactNotification = async (contactData) => {
     const { name, email, phone, subject, message, projectType, budget } = contactData;
     
     const mailOptions = {
-      from: '"Architecture Website" <manjeetkatariya2000@gmail.com>',
-      to: 'manjeetkatariya0332@gmail.com', // Admin email
+      from: '"Sukera Dexterity" <sukeradexterity@gmail.com>',
+      to: process.env.ADMIN_EMAIL || 'sukeradexterity@gmail.com', // Admin email
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -75,7 +76,7 @@ const sendContactNotification = async (contactData) => {
           
           <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px;">
             <p style="color: #777; margin: 0;">Received on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
-            <p style="color: #a68a6b; font-weight: bold; margin: 10px 0 0 0;">Architecture Studio</p>
+            <p style="color: #a68a6b; font-weight: bold; margin: 10px 0 0 0;">Sukera Dexterity</p>
           </div>
         </div>
       `
@@ -108,8 +109,8 @@ const sendEstimateNotification = async (estimateData) => {
     };
     
     const mailOptions = {
-      from: '"Architecture Website" <manjeetkatariya2000@gmail.com>',
-      to: 'manjeetkatariya0332@gmail.com', // Admin email
+      from: '"Sukera Dexterity" <sukeradexterity@gmail.com>',
+      to: process.env.ADMIN_EMAIL || 'sukeradexterity@gmail.com', // Admin email
       subject: `New Estimate Request from ${customerName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -175,7 +176,7 @@ const sendEstimateNotification = async (estimateData) => {
           
           <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px;">
             <p style="color: #777; margin: 0;">Received on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
-            <p style="color: #a68a6b; font-weight: bold; margin: 10px 0 0 0;">Architecture Studio</p>
+            <p style="color: #a68a6b; font-weight: bold; margin: 10px 0 0 0;">Sukera Dexterity</p>
           </div>
         </div>
       `
@@ -194,13 +195,13 @@ const sendEstimateNotification = async (estimateData) => {
 const sendOTP = async (toEmail, otp, purpose = 'verification') => {
   try {
     const mailOptions = {
-      from: '"Architecture Studio" <manjeetkatariya2000@gmail.com>',
+      from: '"Sukera Dexterity" <sukeradexterity@gmail.com>',
       to: toEmail,
       subject: `Your OTP Code - ${purpose === 'estimate' ? 'Estimate Request' : 'Verification'}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; text-align: center;">
           <div style="background: #a68a6b; padding: 30px; border-radius: 8px 8px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 28px;">Architecture Studio</h1>
+            <h1 style="color: white; margin: 0; font-size: 28px;">Sukera Dexterity</h1>
           </div>
           
           <div style="background: #f9f9f9; padding: 40px 30px; border-radius: 0 0 8px 8px;">
@@ -241,7 +242,7 @@ const sendThankYouEmail = async (toEmail, name, type = 'contact') => {
     const isEstimate = type === 'estimate';
     
     const mailOptions = {
-      from: '"Architecture Studio" <manjeetkatariya2000@gmail.com>',
+      from: '"Sukera Dexterity" <sukeradexterity@gmail.com>',
       to: toEmail,
       subject: isEstimate ? 'Thank You for Your Estimate Request' : 'Thank You for Contacting Us',
       html: `
@@ -273,7 +274,7 @@ const sendThankYouEmail = async (toEmail, name, type = 'contact') => {
             
             <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid #ddd;">
               <p style="color: #999; font-size: 14px;">Best regards,</p>
-              <p style="color: #a68a6b; font-weight: bold; font-size: 18px; margin: 10px 0;">Architecture Studio Team</p>
+              <p style="color: #a68a6b; font-weight: bold; font-size: 18px; margin: 10px 0;">Sukera Dexterity Team</p>
             </div>
           </div>
         </div>
@@ -293,13 +294,13 @@ const sendThankYouEmail = async (toEmail, name, type = 'contact') => {
 const sendAdminEmail = async (toEmail, subject, message, customerName) => {
   try {
     const mailOptions = {
-      from: '"Architecture Studio" <manjeetkatariya2000@gmail.com>',
+      from: '"Sukera Dexterity" <sukeradexterity@gmail.com>',
       to: toEmail,
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #a68a6b; padding: 40px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 32px;">Architecture Studio</h1>
+            <h1 style="color: white; margin: 0; font-size: 32px;">Sukera Dexterity</h1>
           </div>
           
           <div style="background: #f9f9f9; padding: 40px 30px; border-radius: 0 0 8px 8px;">
@@ -317,7 +318,7 @@ const sendAdminEmail = async (toEmail, subject, message, customerName) => {
             
             <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid #ddd;">
               <p style="color: #999; font-size: 14px;">Best regards,</p>
-              <p style="color: #a68a6b; font-weight: bold; font-size: 18px; margin: 10px 0;">Architecture Studio Team</p>
+              <p style="color: #a68a6b; font-weight: bold; font-size: 18px; margin: 10px 0;">Sukera Dexterity Team</p>
             </div>
           </div>
         </div>
